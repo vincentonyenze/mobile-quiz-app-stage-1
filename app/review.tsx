@@ -7,7 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ReviewScreen() {
   const router = useRouter();
-  const { questions, answers } = useQuiz();
+  const { questions, answers, resetQuiz } = useQuiz();
 
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
@@ -39,7 +39,10 @@ export default function ReviewScreen() {
         })}
 
         <TouchableOpacity
-          onPress={() => router.replace("/")}
+          onPress={() => {
+            resetQuiz();
+            router.replace("/");
+          }}
           className="bg-blue-600 py-4 rounded-xl mb-8"
         >
           <Text className="text-white text-center font-bold text-lg">
