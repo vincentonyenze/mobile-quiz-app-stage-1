@@ -11,7 +11,7 @@ export default function ReviewScreen() {
   const { questions, answers, resetQuiz } = useQuiz();
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-100">
+    <SafeAreaView className="flex-1">
       <LinearGradient
       colors={['#f59e0b', '#3b82f6']}
       start={{ x: 0, y: 0 }}
@@ -19,7 +19,7 @@ export default function ReviewScreen() {
       className="flex-1"
       >
       <ScrollView className="flex-1 px-4 py-6">
-        <View className="bg-white rounded-2xl p-6 mb-6 shadow-md">
+        <View className="bg-gray-200 rounded-2xl p-6 mb-6 shadow-md">
           <Text className="text-2xl font-bold text-gray-800 mb-2">
             Answer Review
           </Text>

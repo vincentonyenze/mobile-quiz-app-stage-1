@@ -17,7 +17,7 @@ export const ReviewItem: React.FC<ReviewItemProps> = ({
   const userAnswer = answer.selectedAnswer;
   
   return (
-    <View className="bg-white rounded-xl p-5 mb-4 shadow-md">
+    <View className="bg-gray-200 rounded-xl p-5 mb-4 shadow-md">
       <View className="flex-row items-center mb-3">
         <View
           className={`w-8 h-8 rounded-full items-center justify-center mr-3 ${

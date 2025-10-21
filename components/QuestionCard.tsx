@@ -23,8 +23,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
     colors={['#f59e0b', '#3b82f6']}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}
-    className="flex-1 rounded-full p-6 shadow-2xl"
+    className="flex-1 p-6 shadow-2xl"
     >
+      
       {/* Category Badge */}
       <View className="mb-5">
         <View className="inline-flex self-start bg-blue-100 px-4 py-2 rounded-full mb-4">
