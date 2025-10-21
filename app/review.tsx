@@ -1,5 +1,6 @@
 import { ReviewItem } from "@/components/ReviewItem";
 import { useQuiz } from "@/contexts/QuizContext";
+import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
@@ -11,6 +12,12 @@ export default function ReviewScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
+      <LinearGradient
+      colors={['#f59e0b', '#3b82f6']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      className="flex-1"
+      >
       <ScrollView className="flex-1 px-4 py-6">
         <View className="bg-white rounded-2xl p-6 mb-6 shadow-md">
           <Text className="text-2xl font-bold text-gray-800 mb-2">
@@ -50,6 +57,7 @@ export default function ReviewScreen() {
           </Text>
         </TouchableOpacity>
       </ScrollView>
+      </LinearGradient>
     </SafeAreaView>
   );
 }
