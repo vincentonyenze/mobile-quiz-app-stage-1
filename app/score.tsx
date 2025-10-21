@@ -25,7 +25,11 @@ export default function ScoreScreen() {
       className="flex-1"
       >
       <View className="flex-1 justify-center items-center px-6">
-        <View className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl">
+        <LinearGradient
+        colors={['#f59e0b', '#3b82f6']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+         className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl">
           <Text className="text-3xl font-bold text-center text-gray-800 mb-2">
             Quiz Complete!
           </Text>
@@ -65,7 +69,7 @@ export default function ScoreScreen() {
               Retake Quiz
             </Text>
           </TouchableOpacity>
-        </View>
+        </LinearGradient>
       </View>
       </LinearGradient>
     </SafeAreaView>
