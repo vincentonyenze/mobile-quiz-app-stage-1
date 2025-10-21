@@ -4,6 +4,7 @@ import {
   calculateScore,
   getScoreMessage,
 } from "@/utils/scoreCalculator";
+import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
@@ -17,6 +18,12 @@ export default function ScoreScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-gradient-to-br from-blue-500 to-purple-600">
+      <LinearGradient
+      colors={['#f59e0b', '#3b82f6']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      className="flex-1"
+      >
       <View className="flex-1 justify-center items-center px-6">
         <View className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl">
           <Text className="text-3xl font-bold text-center text-gray-800 mb-2">
@@ -60,6 +67,7 @@ export default function ScoreScreen() {
           </TouchableOpacity>
         </View>
       </View>
+      </LinearGradient>
     </SafeAreaView>
   );
 }
