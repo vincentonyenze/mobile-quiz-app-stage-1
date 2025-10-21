@@ -15,29 +15,33 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
   isLastQuestion,
 }) => {
   return (
-    <View className="flex-row justify-between mt-6 mb-8">
+    <View className="flex-row justify-between gap-3">
       <TouchableOpacity
         onPress={onPrevious}
         disabled={isPreviousDisabled}
-        className={`flex-1 mr-2 py-4 rounded-xl ${
-          isPreviousDisabled ? 'bg-gray-300' : 'bg-gray-700'
+        activeOpacity={0.8}
+        className={`flex-1 py-4 rounded-2xl border-2 ${
+          isPreviousDisabled 
+          ? 'bg-white/20 border-white/20' 
+          : 'bg-white/10 border-white/30'
         }`}
       >
         <Text
-          className={`text-center font-semibold ${
-            isPreviousDisabled ? 'text-gray-500' : 'text-white'
+          className={`text-center font-bold text-base ${
+            isPreviousDisabled ? 'text-white/40' : 'text-white'
           }`}
         >
-          Previous
+           Previous
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={onNext}
-        className="flex-1 ml-2 bg-blue-600 py-4 rounded-xl"
+        activeOpacity={0.8}
+        className="flex-1 bg-gray-100 py-5 rounded-2xl"
       >
-        <Text className="text-white text-center font-semibold">
-          {isLastQuestion ? 'Finish' : 'Next'}
+        <Text className="text-blue-600 text-center font-bold text-base">
+          {isLastQuestion ? 'Finish Quiz' : 'Next'}
         </Text>
       </TouchableOpacity>
     </View>

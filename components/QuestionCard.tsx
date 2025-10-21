@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Question } from '@/types';
+import { Question } from "@/types";
+import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 
 interface QuestionCardProps {
   question: Question;
@@ -15,54 +16,98 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   onAnswerSelect,
   questionNumber,
 }) => {
+  const optionLetters = ["A", "B", "C", "D"];
+
   return (
-    <View className="bg-white rounded-2xl p-6 shadow-lg">
-      <View className="mb-4">
-        <Text className="text-sm text-blue-600 font-semibold mb-2">
-          {question.category}
-        </Text>
-        <Text className="text-lg font-bold text-gray-800 mb-1">
+    <LinearGradient 
+    colors={['#f59e0b', '#3b82f6']}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 1 }}
+    className="flex-1 rounded-full p-6 shadow-2xl"
+    >
+      {/* Category Badge */}
+      <View className="mb-5">
+        <View className="inline-flex self-start bg-blue-100 px-4 py-2 rounded-full mb-4">
+          <Text className="text-blue-700 font-bold text-xs uppercase tracking-wide">
+            {question.category}
+          </Text>
+        </View>
+
+        {/* Question Text */}
+
+        {/* <Text className="text-lg font-bold text-gray-800 mb-1">
           Question {questionNumber} of 10
-        </Text>
-        <Text className="text-xl text-gray-900 leading-7">
+        </Text> */}
+        <Text className="text-2xl font-bold text-gray-900 leading-8 mb-2">
           {question.question}
         </Text>
       </View>
 
+      {/* Options */}
+
       <View className="space-y-3">
-        {question.options.map((option, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => onAnswerSelect(index)}
-            className={`p-4 rounded-xl border-2 ${
-              currentAnswer === index
-                ? 'bg-blue-50 border-blue-500'
-                : 'bg-gray-50 border-gray-200'
-            }`}
-          >
-            <View className="flex-row items-center">
-              <View
-                className={`w-6 h-6 rounded-full border-2 mr-3 items-center justify-center ${
-                  currentAnswer === index
-                    ? 'bg-blue-500 border-blue-500'
-                    : 'bg-white border-gray-300'
-                }`}
-              >
-                {currentAnswer === index && (
+        {question.options.map((option, index) => {
+          const isSelected = currentAnswer === index;
+          return (
+            <TouchableOpacity
+              key={index}
+              onPress={() => onAnswerSelect(index)}
+              activeOpacity={0.7}
+              className={`p-5 rounded-2xl border-2 ${
+                isSelected
+                  ? "bg-blue-500 border-blue-500"
+                  : " border-gray-200"
+              }`}
+            >
+              <View className="flex-row items-center">
+                {/* Option Letter */}
+                <View
+                  className={`w-10 h-10 rounded-xl border-2 mr-3 items-center justify-center ${
+                    isSelected
+                      ? "bg-white"
+                      : " border-2 border-gray-300"
+                  }`}
+                >
+                  <Text
+                    className={`text-lg font-bold ${
+                      isSelected ? "text-blue-500" : "text-gray-600"
+                    }`}
+                  >
+                    {optionLetters[index]}
+                  </Text>
+                  {/* {isSelected && (
                   <View className="w-3 h-3 bg-white rounded-full" />
+                )} */}
+                </View>
+
+                {/* Option Text */}
+                <Text
+                  className={`flex-1 text-base leading-6 ${
+                    isSelected ? "text-white font-semibold" : "text-gray-800"
+                  }`}
+                >
+                  {option}
+                </Text>
+
+                {/* Checkmark for selected */}
+
+                {isSelected && (
+                  <View className="ml-2">
+                    <View className="w-6 h-6 bg-white rounded-full items-center justify-center">
+                      <Text className="text-blue-500 font-bold">✓</Text>
+                    </View>
+                  </View>
                 )}
               </View>
-              <Text
-                className={`flex-1 text-base ${
-                  currentAnswer === index ? 'text-blue-900 font-semibold' : 'text-gray-700'
-                }`}
-              >
-                {option}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        ))}
+            </TouchableOpacity>
+          );
+        })}
       </View>
-    </View>
+
+      {/* Helper Text */}
+      <Text className="text-gray-700 text-sm text-center mt-5">
+        Select the best answer
+      </Text>
+    </LinearGradient>
   );
 };

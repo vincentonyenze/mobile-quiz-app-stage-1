@@ -5,8 +5,10 @@ import { useQuiz } from "@/contexts/QuizContext";
 import { useQuizTimer } from "@/hooks/useQuizTimer";
 import { useRouter } from "expo-router";
 import React, { useCallback } from "react";
-import { ScrollView } from "react-native";
+import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 const QUESTION_TIME = 30;
 
@@ -33,27 +35,61 @@ export default function QuizScreen() {
   }, [currentIndex, questions.length, next, resetTimer, router]);
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-100">
-      <ScrollView className="flex-1 px-4 py-6">
-        <Timer timeLeft={timeLeft} totalTime={QUESTION_TIME} />
+    <View className="flex-1 bg-gradient-to-br from-blue-600 to-purple-700">
+      <LinearGradient
+        colors={['#f59e0b', '#3b82f6']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        className="flex-1"
+      >
+        <SafeAreaView className="flex-1">
+          <View className="flex-1 px-5 py-4">
+            {/* Progress Bar */}
+            <View className="mb-6">
+              <View className="flex-row justify-between items-center mb-2">
+                <Text className="text-white/90 font-semibold text-sm">
+                  Question {currentIndex + 1} of {questions.length}
+                </Text>
+                <Text className="text-white/90 font-semibold text-sm">
+                  {Math.round(((currentIndex + 1) / questions.length) * 100)}%
+                </Text>
+              </View>
+              <View className="h-2 bg-white/20 rounded-full overflow-hidden">
+                <View 
+                  className="h-full bg-white rounded-full"
+                  style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
+                />
+              </View>
+            </View>
 
-        <QuestionCard
-          question={currentQuestion}
-          currentAnswer={currentAnswer}
-          onAnswerSelect={selectAnswer}
-          questionNumber={currentIndex + 1}
-        />
+            {/* Timer */}
+            <Timer timeLeft={timeLeft} totalTime={QUESTION_TIME} />
 
-        <NavigationButtons
-          onPrevious={() => {
-            prev();
-            resetTimer();
-          }}
-          onNext={handleNext}
-          isPreviousDisabled={currentIndex === 0}
-          isLastQuestion={currentIndex === questions.length - 1}
-        />
-      </ScrollView>
-    </SafeAreaView>
+            {/* Question Card */}
+            <View className="flex-1 justify-center py-4">
+              <QuestionCard
+                question={currentQuestion}
+                currentAnswer={currentAnswer}
+                onAnswerSelect={selectAnswer}
+                questionNumber={currentIndex + 1}
+              />
+            </View>
+
+            {/* Navigation Buttons */}
+            <View className="pb-2">
+              <NavigationButtons
+                onPrevious={() => {
+                  prev();
+                  resetTimer();
+                }}
+                onNext={handleNext}
+                isPreviousDisabled={currentIndex === 0}
+                isLastQuestion={currentIndex === questions.length - 1}
+              />
+            </View>
+          </View>
+        </SafeAreaView>
+      </LinearGradient>
+    </View>
   );
 }
