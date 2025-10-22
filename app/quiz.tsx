@@ -5,10 +5,8 @@ import { useQuiz } from "@/contexts/QuizContext";
 import { useQuizTimer } from "@/hooks/useQuizTimer";
 import { useRouter } from "expo-router";
 import React, { useCallback } from "react";
-import { View, Text } from "react-native";
+import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from 'expo-linear-gradient';
-
 
 const QUESTION_TIME = 30;
 
@@ -36,11 +34,9 @@ export default function QuizScreen() {
 
   return (
     <View className="flex-1 bg-gradient-to-br from-blue-600 to-purple-700">
-      <LinearGradient
-        colors={['#f59e0b', '#3b82f6']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        className="flex-1"
+      <View
+        
+        className="flex-1 bg-[#1e3a8a]"
       >
         <SafeAreaView className="flex-1">
           <View className="flex-1 px-5 py-4">
@@ -89,7 +85,7 @@ export default function QuizScreen() {
             </View>
           </View>
         </SafeAreaView>
-      </LinearGradient>
+      </View>
     </View>
   );
 }

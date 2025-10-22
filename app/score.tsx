@@ -4,7 +4,6 @@ import {
   calculateScore,
   getScoreMessage,
 } from "@/utils/scoreCalculator";
-import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
@@ -17,44 +16,51 @@ export default function ScoreScreen() {
   const percentage = calculatePercentage(score, questions.length);
 
   return (
-    <SafeAreaView className="flex-1 bg-gradient-to-br from-blue-500 to-purple-600">
-      <LinearGradient
-      colors={['#f59e0b', '#3b82f6']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      className="flex-1"
-      >
+    <SafeAreaView className="flex-1" style={{ backgroundColor: "#1e3a8a" }}>
       <View className="flex-1 justify-center items-center px-6">
-        <LinearGradient
-        colors={['#f59e0b', '#3b82f6']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-         className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl">
-          <Text className="text-3xl font-bold text-center text-gray-800 mb-2">
-            Quiz Complete!
-          </Text>
-          <Text className="text-lg text-center text-gray-600 mb-6">
-            {getScoreMessage(score)}
-          </Text>
+        <View className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl">
+          <View className="items-center mb-6">
+            <Text className="text-4xl font-bold text-center text-gray-800 mb-2">
+              🎉 Quiz Complete!
+            </Text>
+            <Text className="text-lg text-center text-gray-600 mb-4">
+              {getScoreMessage(score)}
+            </Text>
+          </View>
 
           <View className="items-center mb-8">
-            <View className="w-40 h-40 rounded-full bg-blue-100 items-center justify-center mb-4">
-              <Text className="text-6xl font-bold text-blue-600">{score}</Text>
-              <Text className="text-xl text-gray-600">
+            <View className="w-32 h-32 rounded-full bg-amber-100 items-center justify-center mb-4 shadow-lg">
+              <Text className="text-5xl font-bold text-amber-600">{score}</Text>
+              <Text className="text-lg text-amber-700 font-semibold">
                 / {questions.length}
               </Text>
             </View>
-            <Text className="text-2xl font-semibold text-gray-800">
+            <Text className="text-2xl font-bold text-gray-800 mb-2">
               {percentage.toFixed(0)}% Correct
+            </Text>
+            <View className="w-full bg-gray-200 rounded-full h-3 mb-2">
+              <View
+                className="bg-amber-500 h-3 rounded-full"
+                style={{ width: `${percentage}%` }}
+              />
+            </View>
+            <Text className="text-sm text-gray-600">
+              {score >= 8
+                ? "Outstanding performance! 🌟"
+                : score >= 6
+                ? "Great job! Keep it up! 👏"
+                : score >= 4
+                ? "Good effort! Practice more! 👍"
+                : "Keep learning and improving! 📚"}
             </Text>
           </View>
 
           <TouchableOpacity
             onPress={() => router.replace("/review")}
-            className="bg-blue-600 py-4 rounded-xl mb-3"
+            className="bg-amber-600 py-4 rounded-xl mb-4 shadow-lg"
           >
             <Text className="text-white text-center font-bold text-lg">
-              Review Answers
+              📋 Review Answers
             </Text>
           </TouchableOpacity>
 
@@ -63,15 +69,14 @@ export default function ScoreScreen() {
               resetQuiz();
               router.replace("/");
             }}
-            className="bg-gray-700 py-4 rounded-xl"
+            className="bg-gray-700 py-4 rounded-xl shadow-lg"
           >
             <Text className="text-white text-center font-bold text-lg">
-              Retake Quiz
+              🔄 Retake Quiz
             </Text>
           </TouchableOpacity>
-        </LinearGradient>
+        </View>
       </View>
-      </LinearGradient>
     </SafeAreaView>
   );
 }

@@ -13,7 +13,7 @@ export const Timer: React.FC<TimerProps> = ({ timeLeft, totalTime }) => {
   return (
     <View className="mb-6">
       <View className="flex-row justify-between mb-2">
-        <Text className="text-gray-600 font-medium">Time Remaining</Text>
+        <Text className="text-gray-200 font-medium">Time Remaining</Text>
         <Text className={`font-bold ${isWarning ? 'text-red-500' : 'text-blue-600'}`}>
           {timeLeft}s
         </Text>

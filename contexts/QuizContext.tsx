@@ -64,7 +64,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
       next,
       prev,
     }),
-    [currentIndex, answers]
+    [currentIndex, answers, selectAnswer]
   );
 
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
